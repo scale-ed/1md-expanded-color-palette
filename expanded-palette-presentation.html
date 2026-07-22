@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1MD Expanded Color Palette — Presentation</title>
+<style>
+  :root{
+    --bg: #F9FDFE;
+    --panel: #FFFFFF;
+    --panel-border: rgba(48,59,88,.12);
+    --text: #303B58;
+    --text-dim: rgba(48,59,88,.65);
+    --text-faint: rgba(48,59,88,.45);
+    --accent-line: rgba(48,59,88,.12);
+  }
+  *{ box-sizing: border-box; }
+  body{
+    margin:0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    padding: 56px 24px 120px;
+  }
+  .wrap{ max-width: 1180px; margin: 0 auto; }
+
+  header.page{ margin-bottom: 56px; }
+  header.page .kicker{
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    font-size: 12px;
+    font-weight: 600;
+    color: #00AEEF;
+    margin-bottom: 14px;
+  }
+  header.page h1{
+    font-size: 34px;
+    line-height: 1.15;
+    margin: 0 0 16px;
+    letter-spacing: -0.01em;
+  }
+  header.page p{
+    color: var(--text-dim);
+    font-size: 15.5px;
+    line-height: 1.65;
+    max-width: 760px;
+    margin: 0 0 10px;
+  }
+  header.page .brief{
+    margin-top: 28px;
+    padding: 18px 22px;
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: 10px;
+    font-size: 13.5px;
+    color: var(--text-dim);
+    max-width: 760px;
+  }
+  header.page .brief b{ color: var(--text); }
+
+  .section-head{
+    display:flex;
+    align-items: baseline;
+    gap: 14px;
+    margin: 64px 0 22px;
+  }
+  .section-head h2{
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--text);
+    margin: 0;
+    white-space: nowrap;
+  }
+  .section-head .rule{ height:1px; background: var(--accent-line); flex:1; }
+  .section-head .sub{ color: var(--text-faint); font-size: 13px; white-space: nowrap; }
+
+  .grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+  @media (max-width: 980px){ .grid{ grid-template-columns: repeat(2, 1fr);} }
+  @media (max-width: 680px){ .grid{ grid-template-columns: 1fr;} }
+
+  .card{
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: 14px;
+    overflow: hidden;
+    display:flex;
+    flex-direction: column;
+  }
+  .card-head{ padding: 18px 20px 14px; }
+  .card-head .tag{
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--text-faint);
+    margin-bottom: 6px;
+  }
+  .card-head h3{ margin: 0 0 6px; font-size: 17px; }
+  .card-head p{
+    margin: 0;
+    color: var(--text-dim);
+    font-size: 12.8px;
+    line-height: 1.5;
+  }
+
+  /* mock ad tile */
+  .tile{
+    margin: 4px 20px 18px;
+    aspect-ratio: 4 / 5;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 16px;
+  }
+  .tile .brandmark{
+    position:absolute;
+    top: 14px; left: 16px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    padding: 4px 8px;
+    border-radius: 999px;
+  }
+  .tile .headline{
+    font-size: 21px;
+    font-weight: 800;
+    line-height: 1.15;
+    margin: 0 0 12px;
+    max-width: 85%;
+  }
+  .tile .cta{
+    display: inline-flex;
+    align-self: flex-start;
+    font-size: 12.5px;
+    font-weight: 700;
+    padding: 9px 16px;
+    border-radius: 999px;
+  }
+  .tile .blob{
+    position:absolute;
+    border-radius: 50%;
+    filter: blur(2px);
+  }
+
+  /* swatch strip */
+  .swatches{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--panel-border);
+    border-top: 1px solid var(--panel-border);
+  }
+  .sw{
+    background: var(--panel);
+    padding: 12px 10px 10px;
+    display:flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .sw .chip{
+    height: 34px;
+    border-radius: 6px;
+    border: 1px solid rgba(0,0,0,.08);
+  }
+  .sw .role{
+    font-size: 9.5px;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: var(--text-faint);
+  }
+  .sw .hex{
+    font-family: "SF Mono", "Menlo", monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+  }
+  .sw.hero .role{ color: #189668; font-weight: 700; }
+  .sw.hero .role::after{ content: " ★"; }
+
+  footer.note{
+    max-width: 760px;
+    margin: 70px auto 0;
+    color: var(--text-faint);
+    font-size: 12.5px;
+    line-height: 1.7;
+    border-top: 1px solid var(--panel-border);
+    padding-top: 24px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="page">
+    <div class="kicker">1MD Nutrition · Social Ad Color System</div>
+    <h1>Expanded Color Palette — Six Directions for Discussion</h1>
+    <p>Six palette directions for extending 1MD's brand system into high-saturation social ads — a fixed, reusable palette the media team can pull from consistently, instead of one-off color choices on every new ad request.</p>
+    <div class="brief">
+      <b>Brief:</b> Media buyers want to break from brand guidelines with highly saturated colors (a bold bright green in particular) to stop the scroll on Meta. Brand wants guardrails so ads don't fragment into one-off palettes per request. This system is the compromise — a fixed, reusable "loud" palette instead of ad-hoc color choices, still anchored to 1MD's Light Elderberry navy and neutrals so it reads as the brand at a glance.
+    </div>
+  </header>
+
+  <div class="section-head">
+    <h2>Group A — The Boldness Spectrum</h2>
+    <div class="rule"></div>
+    <div class="sub">Same brand hues, three levels of volume</div>
+  </div>
+  <div class="grid">
+
+    <!-- CARD 1: Mild Push -->
+    <div class="card">
+      <div class="card-head">
+        <div class="tag">Spectrum · Step 1 of 3</div>
+        <h3>Mild Push</h3>
+        <p>Existing secondary hues (navy, teal-green, sky blue, coral) brightened and saturated beyond current guidelines. Reads as "louder 1MD," not a new brand.</p>
+      </div>
+      <div class="tile" style="background:#F9FDFE;">
+        <div class="blob" style="width:180px;height:180px;background:#1FE28A;opacity:.18;top:-50px;right:-50px;"></div>
+        <div class="brandmark" style="background:#303B58;color:#F9FDFE;">1MD</div>
+        <div class="headline" style="color:#303B58;">Feel the difference in 30 days</div>
+        <div class="cta" style="background:#1FE28A;color:#0C3524;">Shop Now →</div>
+      </div>
+      <div class="swatches">
+        <div class="sw"><div class="chip" style="background:#303B58;"></div><div class="role">Anchor (Light Elderberry)</div><div class="hex">#303B58</div></div>
+        <div class="sw"><div class="chip" style="background:#F9FDFE;"></div><div class="role">Neutral</div><div class="hex">#F9FDFE</div></div>
+        <div class="sw"><div class="chip" style="background:#7C879B;"></div><div class="role">Support Gray</div><div class="hex">#7C879B</div></div>
+        <div class="sw hero"><div class="chip" style="background:#1FE28A;"></div><div class="role">Bright Green</div><div class="hex">#1FE28A</div></div>
+        <div class="sw"><div class="chip" style="background:#00AEEF;"></div><div class="role">Vivid Blue</div><div class="hex">#00AEEF</div></div>
+        <div class="sw"><div class="chip" style="background:#FF5A4D;"></div><div class="role">Vivid Coral</div><div class="hex">#FF5A4D</div></div>
+      </div>
+    </div>
+
+    <!-- CARD 2: Medium Push -->
+    <div class="card">
+      <div class="card-head">
+        <div class="tag">Spectrum · Step 2 of 3</div>
+        <h3>Medium Push</h3>
+        <p>Noticeably hotter than brand guidelines, plus one net-new accent (gold) for pattern interruption. The green here is close to what media buyers are picturing.</p>
+      </div>
+      <div class="tile" style="background:#303B58;">
+        <div class="blob" style="width:220px;height:220px;background:#00E676;opacity:.22;bottom:-70px;left:-60px;"></div>
+        <div class="brandmark" style="background:#FFC400;color:#303B58;">1MD</div>
+        <div class="headline" style="color:#FFFFFF;">Your liver will thank you</div>
+        <div class="cta" style="background:#00E676;color:#062B1B;">Shop Now →</div>
+      </div>
+      <div class="swatches">
+        <div class="sw"><div class="chip" style="background:#303B58;"></div><div class="role">Anchor (Light Elderberry)</div><div class="hex">#303B58</div></div>
+        <div class="sw"><div class="chip" style="background:#F9FDFE;"></div><div class="role">Neutral</div><div class="hex">#F9FDFE</div></div>
+        <div class="sw hero"><div class="chip" style="background:#00E676;"></div><div class="role">Bright Green</div><div class="hex">#00E676</div></div>
+        <div class="sw"><div class="chip" style="background:#0090FF;"></div><div class="role">Vivid Blue</div><div class="hex">#0090FF</div></div>
+        <div class="sw"><div class="chip" style="background:#FF4438;"></div><div class="role">Hot Coral-Red</div><div class="hex">#FF4438</div></div>
+        <div class="sw"><div class="chip" style="background:#FFC400;"></div><div class="role">Gold (new)</div><div class="hex">#FFC400</div></div>
+      </div>
+    </div>
+
+    <!-- CARD 3: Maximum Saturation -->
+    <div class="card">
+      <div class="card-head">
+        <div class="tag">Spectrum · Step 3 of 3</div>
+        <h3>Maximum Saturation</h3>
+        <p>Full-saturation register, anchored on Light Elderberry so it still reads as 1MD rather than a generic neon ad. A vivid violet rounds out the fourth accent — it carries the same electric, attention-grabbing energy as magenta or hot pink, but reads premium and clinical rather than cosmetic, which fits a corporate-medical tone. It also sits at a distinct point on the color wheel from the blue and green already in this palette.</p>
+      </div>
+      <div class="tile" style="background:#303B58;">
+        <div class="blob" style="width:200px;height:200px;background:#7B2FFF;opacity:.25;top:-60px;left:-40px;"></div>
+        <div class="brandmark" style="background:#39FF14;color:#0A2409;">1MD</div>
+        <div class="headline" style="color:#FFFFFF;">Stop scrolling. Start healing.</div>
+        <div class="cta" style="background:#39FF14;color:#0A2409;">Shop Now →</div>
+      </div>
+      <div class="swatches">
+        <div class="sw"><div class="chip" style="background:#303B58;"></div><div class="role">Anchor (Light Elderberry)</div><div class="hex">#303B58</div></div>
+        <div class="sw"><div class="chip" style="background:#FFFFFF;border:1px solid #333;"></div><div class="role">Neutral</div><div class="hex">#FFFFFF</div></div>
+        <div class="sw hero"><div class="chip" style="background:#39FF14;"></div><div class="role">Neon Green</div><div class="hex">#39FF14</div></div>
+        <div class="sw"><div class="chip" style="background:#00C2FF;"></div><div class="role">Electric Blue</div><div class="hex">#00C2FF</div></div>
+        <div class="sw"><div class="chip" style="background:#7B2FFF;"></div><div class="role">Vivid Violet</div><div class="hex">#7B2FFF</div></div>
+        <div class="sw"><div class="chip" style="background:#FF3B1F;"></div><div class="role">Neon Orange-Red</div><div class="hex">#FF3B1F</div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section-head">
+    <h2>Group B — Color Stories</h2>
+    <div class="rule"></div>
+    <div class="sub">Equally bold, different logic for which hue leads</div>
+  </div>
+  <div class="grid">
+
+    <!-- CARD 4: Warm-Forward -->
+    <div class="card">
+      <div class="card-head">
+        <div class="tag">Story · Warm-Forward</div>
+        <h3>Warm-Forward</h3>
+        <p>Coral, orange, and gold lead; the bright green plays a supporting accent role rather than the star. Good fit for urgency/promo-driven ad copy.</p>
+      </div>
+      <div class="tile" style="background:#FDF6EC;">
+        <div class="blob" style="width:190px;height:190px;background:#FF7A29;opacity:.20;bottom:-60px;right:-50px;"></div>
+        <div class="brandmark" style="background:#303B58;color:#FDF6EC;">1MD</div>
+        <div class="headline" style="color:#303B58;">Today only: 40% off</div>
+        <div class="cta" style="background:#2BE07A;color:#0C3524;">Claim Offer →</div>
+      </div>
+      <div class="swatches">
+        <div class="sw"><div class="chip" style="background:#303B58;"></div><div class="role">Anchor (Light Elderberry)</div><div class="hex">#303B58</div></div>
+        <div class="sw"><div class="chip" style="background:#FDF6EC;border:1px solid #333;"></div><div class="role">Neutral (warm)</div><div class="hex">#FDF6EC</div></div>
+        <div class="sw"><div class="chip" style="background:#FF4438;"></div><div class="role">Coral-Red</div><div class="hex">#FF4438</div></div>
+        <div class="sw"><div class="chip" style="background:#FF7A29;"></div><div class="role">Orange</div><div class="hex">#FF7A29</div></div>
+        <div class="sw"><div class="chip" style="background:#FFC400;"></div><div class="role">Gold</div><div class="hex">#FFC400</div></div>
+        <div class="sw hero"><div class="chip" style="background:#2BE07A;"></div><div class="role">Bright Green</div><div class="hex">#2BE07A</div></div>
+      </div>
+    </div>
+
+    <!-- CARD 5: Cool-Forward -->
+    <div class="card">
+      <div class="card-head">
+        <div class="tag">Story · Cool-Forward</div>
+        <h3>Cool-Forward</h3>
+        <p>Blues, teal, and the bright green co-lead as a "clinical but electric" trio — closest to Eucalyptus/CelestialBlue's original hue family, just turned all the way up.</p>
+      </div>
+      <div class="tile" style="background:#EAF6FB;">
+        <div class="blob" style="width:190px;height:190px;background:#00D9C0;opacity:.22;top:-50px;left:-40px;"></div>
+        <div class="brandmark" style="background:#303B58;color:#EAF6FB;">1MD</div>
+        <div class="headline" style="color:#303B58;">Backed by science.<br>Built for results.</div>
+        <div class="cta" style="background:#22E86B;color:#062B1B;">Shop Now →</div>
+      </div>
+      <div class="swatches">
+        <div class="sw"><div class="chip" style="background:#303B58;"></div><div class="role">Anchor (Light Elderberry)</div><div class="hex">#303B58</div></div>
+        <div class="sw"><div class="chip" style="background:#EAF6FB;border:1px solid #333;"></div><div class="role">Neutral (cool)</div><div class="hex">#EAF6FB</div></div>
+        <div class="sw"><div class="chip" style="background:#00AEEF;"></div><div class="role">Electric Blue</div><div class="hex">#00AEEF</div></div>
+        <div class="sw"><div class="chip" style="background:#00D9C0;"></div><div class="role">Vivid Teal</div><div class="hex">#00D9C0</div></div>
+        <div class="sw hero"><div class="chip" style="background:#22E86B;"></div><div class="role">Bright Green</div><div class="hex">#22E86B</div></div>
+        <div class="sw"><div class="chip" style="background:#5B4FE8;"></div><div class="role">Indigo (new)</div><div class="hex">#5B4FE8</div></div>
+      </div>
+    </div>
+
+    <!-- CARD 6: High-Contrast Complementary -->
+    <div class="card">
+      <div class="card-head">
+        <div class="tag">Story · High-Contrast Complementary</div>
+        <h3>Complementary Pairs</h3>
+        <p>Built on true color-wheel opposites (green↔red, blue↔orange) rather than uniform saturation — the contrast itself is the scroll-stopper, not just brightness.</p>
+      </div>
+      <div class="tile" style="background:#303B58;">
+        <div class="blob" style="width:170px;height:170px;background:#FF2D42;opacity:.20;bottom:-50px;right:-40px;"></div>
+        <div class="brandmark" style="background:#16E37E;color:#062412;">1MD</div>
+        <div class="headline" style="color:#FFFFFF;">Real reviews.<br>Real results.</div>
+        <div class="cta" style="background:#16E37E;color:#062412;">Shop Now →</div>
+      </div>
+      <div class="swatches">
+        <div class="sw"><div class="chip" style="background:#303B58;"></div><div class="role">Anchor (Light Elderberry)</div><div class="hex">#303B58</div></div>
+        <div class="sw"><div class="chip" style="background:#FFFFFF;border:1px solid #333;"></div><div class="role">Neutral</div><div class="hex">#FFFFFF</div></div>
+        <div class="sw hero"><div class="chip" style="background:#16E37E;"></div><div class="role">Bright Green</div><div class="hex">#16E37E</div></div>
+        <div class="sw"><div class="chip" style="background:#FF2D42;"></div><div class="role">Crimson (pair)</div><div class="hex">#FF2D42</div></div>
+        <div class="sw"><div class="chip" style="background:#0084FF;"></div><div class="role">Blue (pair)</div><div class="hex">#0084FF</div></div>
+        <div class="sw"><div class="chip" style="background:#FF8A00;"></div><div class="role">Orange (pair)</div><div class="hex">#FF8A00</div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="note">
+    ★ marks the featured bright green in each option — the saturated green the media team specifically requested. All six anchor on Light Elderberry and a light neutral background so every option still reads as 1MD, not a generic ad palette.
+  </footer>
+
+</div>
+</body>
+</html>
